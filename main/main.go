@@ -18,8 +18,8 @@ var passwordLength = []int{5, 24, 19, 23, 2, 11, 20, 9, 3, 29, 17, 27, 6, 13, 31
 
 func main() {
 	var seed string
-	for i := 0; i <= 10000; i++ {
-		fmt.Printf("The index: [%d]\n", i)
+	for i := 1; i <= 2; i++ {
+		fmt.Printf("测试次数: [%d]\n", i)
 
 		// get random seed
 		seed = RandStringRunes(32)
@@ -30,6 +30,11 @@ func main() {
 		// get md5OfSeed and md5OfSecond from salt
 		passwordFromSalt := getPasswordFromSalt(salt)
 
+		fmt.Printf("数据库保存的随机串         : [%s]\n", seed)
+		fmt.Printf("so 库返回的结果            : [%s]\n", salt)
+		fmt.Printf("实际 salt                  : [%s]\n", originalPassword)
+		fmt.Printf("从 so 库返回结果获取 salt  : [%s]\n", passwordFromSalt)
+		fmt.Println()
 		// log if password not equals
 		if strings.Compare(originalPassword, passwordFromSalt) != 0 {
 			fmt.Printf("Password not eqult for seed: [%s]\n", seed)
